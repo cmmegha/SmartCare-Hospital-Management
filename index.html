@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>SmartCare | Digital Claim Management</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- QR code generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- QR code scanning -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+
+<body>
+
+    <!-- ================= LOGIN PAGE ================= -->
+
+    <div id="loginPage" class="login-page">
+
+        <div class="login-card">
+
+            <div class="logo">✚</div>
+
+            <h1>SmartCare</h1>
+
+            <p class="subtitle">
+                Hospital Digital Claim Management System
+            </p>
+
+            <form id="loginForm">
+
+                <label for="loginRole">Login as</label>
+
+                <select id="loginRole">
+                    <option value="receptionist">
+                        Receptionist / Hospital Staff
+                    </option>
+
+                    <option value="insurer">
+                        Insurance Company
+                    </option>
+
+                    <option value="patient">
+                        Patient
+                    </option>
+                </select>
+
+                <!-- STAFF LOGIN -->
+
+                <div id="staffFields">
+
+                    <label for="username">Username</label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                    >
+
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                    >
+
+                </div>
+
+                <!-- PATIENT LOGIN -->
+
+                <div id="patientFields" class="hidden">
+
+                    <label for="patientLoginId">Patient ID</label>
+
+                    <input
+                        type="text"
+                        id="patientLoginId"
+                        placeholder="Enter Patient ID"
+                    >
+
+                    <label for="patientPhone">
+                        Registered phone number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="patientPhone"
+                        placeholder="Enter phone number"
+                    >
+
+                    <div class="or-divider">
+                        OR
+                    </div>
+
+                    <button
+                        type="button"
+                        id="startPatientQR"
+                        class="secondary-btn full-width"
+                    >
+                        <span>▣</span> Scan My QR Code
+                    </button>
+
+                    <div id="patientLoginReader"></div>
+
+                    <p id="patientQRMessage" class="error-message"></p>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="primary-btn full-width"
+                >
+                    Login
+                </button>
+
+                <p id="loginError" class="error-message"></p>
+
+            </form>
+
+            <div class="demo-info">
+
+                <strong>Demo login details</strong>
+
+                <p>
+                    Receptionist:
+                    <b>recep</b> / <b>1234</b>
+                </p>
+
+                <p>
+                    Insurer:
+                    <b>insurer</b> / <b>1234</b>
+                </p>
+
+                <p>
+                    Patient:
+                    Use Patient ID and registered phone number,
+                    or scan the QR code.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN APPLICATION ================= -->
+
+    <div id="appPage" class="hidden">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div class="brand">
+
+                <span class="brand-icon">✚</span>
+
+                <div>
+                    <h2>SmartCare</h2>
+                    <small>Digital Claim Management</small>
+                </div>
+
+            </div>
+
+            <div class="user-area">
+
+                <span id="userName"></span>
+
+                <button id="logoutBtn" class="logout-btn">
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- APPLICATION LAYOUT -->
+
+        <div class="app-layout">
+
+            <!-- SIDEBAR -->
+
+            <aside class="sidebar">
+
+                <div class="sidebar-heading">
+                    MAIN MENU
+                </div>
+
+                <nav id="sidebarNav"></nav>
+
+            </aside>
+
+
+            <!-- MAIN CONTENT -->
+
+            <main id="mainContent" class="main-content"></main>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
